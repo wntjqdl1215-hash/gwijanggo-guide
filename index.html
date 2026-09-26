@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>귀장고 테마 안내문</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: rgba(22, 22, 22, 0.95);
+            --text-main: #e0e0e0;
+            --text-sub: #888888;
+            --accent-red: #ff3b3b;
+            --accent-orange: #ff9f1c;
+            --border-radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(255, 59, 59, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 59, 59, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-main);
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px; /* 태블릿 대응을 위해 폭을 넓힘 */
+            width: 100%;
+            background-color: #111;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 상단 빨간 줄 장식 */
+        .container::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+            box-shadow: 0 0 15px var(--accent-red);
+            z-index: 10;
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: #fff; font-size: 2.2rem; margin: 0 0 10px 0; letter-spacing: -1px; text-shadow: 0 0 15px rgba(255, 255, 255, 0.15); }
+        .sub-title { color: var(--text-sub); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 20px; display: inline-block; width: 100%; }
+
+        /* 경고 박스 레이아웃 (반응형) */
+        .alert-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* 화면이 넓을 때 경고 박스 2열 배치 */
+        @media (min-width: 768px) {
+            .alert-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .alert-box { 
+            background-color: rgba(255, 59, 59, 0.05); 
+            border-left: 4px solid var(--accent-red); 
+            padding: 20px; 
+            border-radius: 4px; 
+            font-size: 1rem; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .alert-box.warning { border-left-color: var(--accent-orange); background-color: rgba(255, 159, 28, 0.05); }
+        .alert-title { font-weight: 800; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 1.1rem; }
+        .red-text { color: var(--accent-red); }
+        .orange-text { color: var(--accent-orange); }
+
+        /* 중요 구역 */
+        .critical-section {
+            border: 2px solid var(--accent-red);
+            border-radius: var(--border-radius);
+            padding: 40px 25px 25px 25px;
+            margin-top: 20px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 59, 59, 0.08) 0%, rgba(0,0,0,0) 80%);
+        }
+        .critical-label {
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            background-color: var(--accent-red); color: #000; padding: 8px 24px;
+            font-size: 1rem; font-weight: 900; border-radius: 30px;
+            box-shadow: 0 0 20px var(--accent-red); white-space: nowrap;
+            display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; z-index: 10;
+        }
+
+        .section-header { display: block; text-align: center; margin: 0 0 25px 0; color: #fff; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+        .section-header span { color: var(--accent-red); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* 장비 카드 그리드 (반응형) */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* 화면이 넓을 때 장비 카드 2열 배치 */
+        @media (min-width: 768px) {
+            .equipment-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .equipment-card { 
+            background-color: var(--card-bg); 
+            border: 1px solid #444; 
+            border-radius: var(--border-radius); 
+            padding: 25px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .eq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #2a2a2a; padding-bottom: 12px; }
+        .eq-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .badge { font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; background: #2a2a2a; color: #aaa; font-weight: 600; }
+        ul { margin: 0; padding-left: 20px; color: #ccc; font-size: 0.95rem; }
+        li { margin-bottom: 8px; }
+        strong { color: #fff; font-weight: 600; }
+        .highlight { color: var(--accent-red); font-weight: 700; background: rgba(255, 59, 59, 0.1); padding: 2px 6px; border-radius: 4px; }
+
+        /* EMF 시각화 */
+        .emf-visual { margin-top: 20px; background: #000; padding: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 15px; border: 1px solid #333; }
+        .bars-container { display: flex; gap: 5px; }
+        .bar { width: 12px; height: 20px; background-color: #333; border-radius: 3px; transition: all 0.3s; --bar-color: #555; }
+        .bar:nth-child(1), .bar:nth-child(2) { --bar-color: #00e676; }
+        .bar:nth-child(3) { --bar-color: #ffeb3b; }
+        .bar:nth-child(4) { --bar-color: #ff9100; }
+        .bar:nth-child(5) { --bar-color: #ff3b3b; }
+        .bar.active { background-color: var(--bar-color); box-shadow: 0 0 10px var(--bar-color); animation: pulse 1.5s infinite alternate; }
+        .bar:nth-child(2) { animation-delay: 0.1s; } .bar:nth-child(3) { animation-delay: 0.2s; } .bar:nth-child(4) { animation-delay: 0.3s; } .bar:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes pulse { from { opacity: 0.7; box-shadow: 0 0 3px var(--bar-color); } to { opacity: 1; box-shadow: 0 0 15px var(--bar-color); } }
+        .level-text { color: #666; font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; margin-right: 4px; }
+        .visual-label { font-size: 0.9rem; color: #fff; font-weight: bold; white-space: nowrap; }
+
+        /* 버튼 */
+        .next-btn-container { margin-top: 40px; text-align: center; }
+        .next-btn {
+            display: inline-block;
+            width: 100%;
+            max-width: 400px;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .next-btn:hover {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 59, 59, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #444; font-family: monospace; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>⚠️ 작전 구역 진입 안내</h1>
+            <div class="sub-title">CODENAME : 귀장고 (鬼藏庫)</div>
+        </header>
+
+        <!-- 반응형 그리드 적용: 태블릿에선 좌우로 나뉨 -->
+        <div class="alert-grid">
+            <div class="alert-box">
+                <span class="alert-title red-text">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4v-9z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    나레이션 절대 집중
+                </span>
+                <div>
+                    이 테마는 스토리 진행이 핵심입니다.<br>
+                    <span class="highlight" style="color:var(--accent-red); background:none; padding:0;">나레이션을 놓치면 진행이 불가능합니다.</span><br>
+                    소리가 들리면 하던 일을 멈추고 집중해주세요.
+                </div>
+            </div>
+
+            <div class="alert-box warning">
+                <span class="alert-title orange-text">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    안전 주의 및 소품 보호
+                </span>
+                <div>
+                    내부 조도가 낮으니 이동 시 발밑을 주의하세요.<br>
+                    모든 소품은 공용 장비입니다. 파손에 주의해주세요.
+                </div>
+            </div>
+        </div>
+
+        <div class="critical-section">
+            <div class="critical-label">MISSION CRITICAL : 필독</div>
+            
+            <div class="section-header">
+                특수 장비 운용 수칙 <span>(매우 중요)</span>
+            </div>
+
+            <!-- 반응형 그리드 적용: 태블릿에선 장비 2개가 나란히 -->
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div>
+                        <div class="eq-header">
+                            <span class="eq-title">1. 요원 전용 통신장비</span>
+                            <span class="badge">SMARTPHONE</span>
+                        </div>
+                        <ul>
+                            <li>특정 <strong>지문(마크)</strong> 발견 시 어플을 실행하세요.</li>
+                            <li>실행 후 화면을 <span class="highlight">절대 조작(터치)하지 마세요.</span></li>
+                            <li>알람이나 소리가 들리면 즉시 귀를 기울이세요.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="equipment-card">
+                    <div>
+                        <div class="eq-header">
+                            <span class="eq-title">2. EMF 파장 탐지기</span>
+                            <span class="badge">DETECTOR</span>
+                        </div>
+                        <ul>
+                            <li><strong>폰에서 알람</strong>이 울리면 사용이 가능합니다.</li>
+                            <li>장비를 들고 주변을 탐색하여 아래 신호를 찾으세요.</li>
+                            <li><span class="highlight">5칸 중 빨간색까지 최고 신호가 뜨는 곳이</span> 단서와 밀접한 관련이 있습니다.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emf-visual">
+                        <div class="level-text">LEVEL -</div>
+                        <div class="bars-container">
+                            <div class="bar active"></div>
+                            <div class="bar active"></div>
+                            <div class="bar active"></div>
+                            <div class="bar active"></div>
+                            <div class="bar active"></div>
+                        </div>
+                        <div class="visual-label">
+                            ◀ 목표 지점 신호
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-btn-container">
+            <a href="story.html" class="next-btn">📂 사건 기록 열람 (STORY) ▶</a>
+        </div>
+
+        <div class="footer">
+            PARANORMAL ACTIVITY BUREAU<br>
+            SECURE CHANNEL 10-4
+        </div>
+    </div>
+
+</body>
+</html>
